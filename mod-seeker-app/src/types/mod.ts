@@ -22,6 +22,8 @@ export interface ModFile {
   downloadUrl: string;
   fileSize: number;
   dependencies: DependencyItem[];
+  sha1?: string;
+  sha512?: string;
 }
 
 export interface ModSearchResult {
@@ -66,4 +68,30 @@ export interface ExportManifest {
     platform: ModPlatform;
     isDependency: boolean;
   }>;
+}
+
+// ─── Mrpack (Modrinth Pack) Types ─────────────────────────────────────────
+
+export interface MrpackFileEntry {
+  path: string;
+  hashes: {
+    sha1: string;
+    sha512: string;
+  };
+  env?: {
+    client: 'required' | 'optional' | 'unsupported';
+    server: 'required' | 'optional' | 'unsupported';
+  };
+  downloads: string[];
+  fileSize: number;
+}
+
+export interface MrpackIndex {
+  formatVersion: 1;
+  game: 'minecraft';
+  versionId: string;
+  name: string;
+  summary?: string;
+  files: MrpackFileEntry[];
+  dependencies: Record<string, string>;
 }

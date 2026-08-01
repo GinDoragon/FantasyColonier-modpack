@@ -42,6 +42,9 @@
           <button @click="packModpack" class="btn btn-secondary" :disabled="isPacking">
             <span>{{ isPacking ? '📦 Packing...' : '📦 Pack Release ZIP' }}</span>
           </button>
+          <button @click="packMrpack" class="btn btn-secondary" :disabled="isPackingMrpack">
+            <span>{{ isPackingMrpack ? '📦 Packing...' : '📦 Pack .mrpack' }}</span>
+          </button>
           <button @click="downloadAllFiles" class="btn btn-primary" :disabled="isBatchDownloading">
             <span>{{ isBatchDownloading ? 'Downloading...' : '⬇️ Download All .jar' }}</span>
           </button>
@@ -106,6 +109,7 @@ const isResolvingGlobal = ref(false);
 const isBatchDownloading = ref(false);
 const isExportModalOpen = ref(false);
 const isPacking = ref(false);
+const isPackingMrpack = ref(false);
 
 const uniqueMods = computed(() => ExporterService.getUniqueModFiles(resolvedNodes.value));
 const totalUniqueMods = computed(() => uniqueMods.value.length);
@@ -150,6 +154,23 @@ async function packModpack() {
     alert('Failed to trigger packing: ' + err.message);
   } finally {
     isPacking.value = false;
+  }
+}
+
+async function packMrpack() {
+  isPackingMrpack.value = true;
+  try {
+    const res = await fetch('/api/package-mrpack', { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      alert('.mrpack packed successfully to: ' + data.path);
+    } else {
+      alert('Failed to pack .mrpack: ' + data.error);
+    }
+  } catch (err: any) {
+    alert('Failed to trigger packing: ' + err.message);
+  } finally {
+    isPackingMrpack.value = false;
   }
 }
 

@@ -1,4 +1,4 @@
-import { ResolvedModNode, BuildContext, ExportManifest } from '../types/mod';
+import { ResolvedModNode, BuildContext, ExportManifest, MrpackIndex, MrpackFileEntry } from '../types/mod';
 
 export class ExporterService {
   /**
@@ -79,6 +79,50 @@ export class ExporterService {
   }
 
   /**
+   * Export format 4: Modrinth Pack manifest (modrinth.index.json)
+   */
+  static exportMrpackManifest(nodes: ResolvedModNode[], context: BuildContext): string {
+    const items = this.getUniqueModFiles(nodes);
+
+    const loaderKey = context.modLoader === 'forge' ? 'forge'
+      : context.modLoader === 'neoforge' ? 'neoforge'
+      : context.modLoader === 'fabric' ? 'fabric-loader'
+      : 'quilt-loader';
+
+    const mrpackIndex: MrpackIndex = {
+      formatVersion: 1,
+      game: 'minecraft',
+      versionId: '1.0.0',
+      name: 'FantasyColonier',
+      summary: `Custom modpack for Minecraft ${context.gameVersion}`,
+      files: items
+        .filter(item => item.file?.downloadUrl)
+        .map(item => {
+          const entry: MrpackFileEntry = {
+            path: `mods/${item.file!.fileName}`,
+            hashes: {
+              sha1: item.file?.sha1 || '',
+              sha512: item.file?.sha512 || '',
+            },
+            env: {
+              client: 'required',
+              server: 'required',
+            },
+            downloads: [item.file!.downloadUrl],
+            fileSize: item.file!.fileSize || 0,
+          };
+          return entry;
+        }),
+      dependencies: {
+        minecraft: context.gameVersion,
+        [loaderKey]: 'latest',
+      },
+    };
+
+    return JSON.stringify(mrpackIndex, null, 2);
+  }
+
+  /**
    * Triggers a browser download for text content
    */
   static downloadTextFile(filename: string, content: string, mimeType = 'text/plain') {
@@ -91,5 +135,127 @@ export class ExporterService {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+  }
+
+  /**
+   * Generates and downloads a .mrpack file (ZIP with modrinth.index.json).
+   * Note: This creates a minimal mrpack with just the index — no overrides bundled.
+   * For full packaging with overrides, use the server-side /api/package-mrpack endpoint.
+   */
+  static async downloadMrpack(nodes: ResolvedModNode[], context: BuildContext) {
+    const manifestContent = this.exportMrpackManifest(nodes, context);
+    
+    // Create a minimal ZIP containing modrinth.index.json
+    // Using JSZip-like approach with raw ZIP construction
+    const zip = await this.createMinimalZip('modrinth.index.json', manifestContent);
+    
+    const blob = new Blob([zip], { type: 'application/x-modrinth-modpack+zip' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'FantasyColonier.mrpack';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  /**
+   * Create a minimal ZIP file containing a single text file.
+   * Uses raw ZIP format construction (no external dependencies).
+   */
+  private static async createMinimalZip(filename: string, content: string): Promise<ArrayBuffer> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(content);
+    const filenameBytes = encoder.encode(filename);
+
+    const localHeaderSize = 30 + filenameBytes.length;
+    const centralHeaderSize = 46 + filenameBytes.length;
+    const eocdSize = 22;
+    const totalSize = localHeaderSize + data.length + centralHeaderSize + eocdSize;
+
+    const buffer = new ArrayBuffer(totalSize);
+    const view = new DataView(buffer);
+    const bytes = new Uint8Array(buffer);
+    let offset = 0;
+
+    // CRC32 calculation
+    const crc = this.crc32(data);
+
+    // Local file header
+    view.setUint32(offset, 0x04034b50, true); offset += 4; // signature
+    view.setUint16(offset, 20, true); offset += 2; // version needed
+    view.setUint16(offset, 0, true); offset += 2; // flags
+    view.setUint16(offset, 0, true); offset += 2; // compression (stored)
+    view.setUint16(offset, 0, true); offset += 2; // mod time
+    view.setUint16(offset, 0, true); offset += 2; // mod date
+    view.setUint32(offset, crc, true); offset += 4; // crc-32
+    view.setUint32(offset, data.length, true); offset += 4; // compressed size
+    view.setUint32(offset, data.length, true); offset += 4; // uncompressed size
+    view.setUint16(offset, filenameBytes.length, true); offset += 2; // filename length
+    view.setUint16(offset, 0, true); offset += 2; // extra field length
+    bytes.set(filenameBytes, offset); offset += filenameBytes.length;
+    bytes.set(data, offset); offset += data.length;
+
+    const centralOffset = offset;
+
+    // Central directory header
+    view.setUint32(offset, 0x02014b50, true); offset += 4; // signature
+    view.setUint16(offset, 20, true); offset += 2; // version made by
+    view.setUint16(offset, 20, true); offset += 2; // version needed
+    view.setUint16(offset, 0, true); offset += 2; // flags
+    view.setUint16(offset, 0, true); offset += 2; // compression
+    view.setUint16(offset, 0, true); offset += 2; // mod time
+    view.setUint16(offset, 0, true); offset += 2; // mod date
+    view.setUint32(offset, crc, true); offset += 4; // crc-32
+    view.setUint32(offset, data.length, true); offset += 4; // compressed size
+    view.setUint32(offset, data.length, true); offset += 4; // uncompressed size
+    view.setUint16(offset, filenameBytes.length, true); offset += 2; // filename length
+    view.setUint16(offset, 0, true); offset += 2; // extra field length
+    view.setUint16(offset, 0, true); offset += 2; // comment length
+    view.setUint16(offset, 0, true); offset += 2; // disk number start
+    view.setUint16(offset, 0, true); offset += 2; // internal attrs
+    view.setUint32(offset, 0, true); offset += 4; // external attrs
+    view.setUint32(offset, 0, true); offset += 4; // local header offset
+    bytes.set(filenameBytes, offset); offset += filenameBytes.length;
+
+    // End of central directory
+    view.setUint32(offset, 0x06054b50, true); offset += 4; // signature
+    view.setUint16(offset, 0, true); offset += 2; // disk number
+    view.setUint16(offset, 0, true); offset += 2; // central dir disk
+    view.setUint16(offset, 1, true); offset += 2; // entries on disk
+    view.setUint16(offset, 1, true); offset += 2; // total entries
+    view.setUint32(offset, centralHeaderSize, true); offset += 4; // central dir size
+    view.setUint32(offset, centralOffset, true); offset += 4; // central dir offset
+    view.setUint16(offset, 0, true); // comment length
+
+    return buffer;
+  }
+
+  /**
+   * CRC32 calculation for ZIP file integrity
+   */
+  private static crc32(data: Uint8Array): number {
+    let crc = 0xFFFFFFFF;
+    const table = ExporterService.getCRC32Table();
+    for (let i = 0; i < data.length; i++) {
+      crc = (crc >>> 8) ^ table[(crc ^ data[i]) & 0xFF];
+    }
+    return (crc ^ 0xFFFFFFFF) >>> 0;
+  }
+
+  private static crc32Table: number[] | null = null;
+  private static getCRC32Table(): number[] {
+    if (this.crc32Table) return this.crc32Table;
+    const table: number[] = [];
+    for (let i = 0; i < 256; i++) {
+      let c = i;
+      for (let j = 0; j < 8; j++) {
+        c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+      }
+      table.push(c);
+    }
+    this.crc32Table = table;
+    return table;
   }
 }
