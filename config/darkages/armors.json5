@@ -1,0 +1,278 @@
+{
+	"balykSookLamellar": {
+		"enabled": true,
+		"toughness": 0.20000000298023224,
+		"chestplateDurability": 220,
+		"chestplateDefense": 6
+	},
+	"easternRichKaftan": {
+		"enabled": true,
+		"toughness": 0.0,
+		"chestplateDurability": 140,
+		"chestplateDefense": 1,
+		"bootsDurability": 90,
+		"bootsDefense": 1
+	},
+	"birkaTunic": {
+		"enabled": true,
+		"toughness": 0.0,
+		"chestplateDurability": 140,
+		"chestplateDefense": 1,
+		"bootsDurability": 90,
+		"bootsDefense": 1
+	},
+	"lombardLamellar": {
+		"enabled": true,
+		"toughness": 0.20000000298023224,
+		"chestplateDurability": 220,
+		"chestplateDefense": 6,
+		"bootsDurability": 200,
+		"bootsDefense": 2
+	},
+	"gildedHauberk": {
+		"enabled": true,
+		"toughness": 0.0,
+		"chestplateDurability": 240,
+		"chestplateDefense": 5,
+		"bootsDurability": 180,
+		"bootsDefense": 2
+	},
+	"northernGambeson": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"chestplateDurability": 128,
+		"chestplateDefense": 3
+	},
+	"hauberk": {
+		"enabled": true,
+		"toughness": 0.0,
+		"chestplateDurability": 240,
+		"chestplateDefense": 5,
+		"bootsDurability": 180,
+		"bootsDefense": 2
+	},
+	"richHauberk": {
+		"enabled": true,
+		"toughness": 0.10000000149011612,
+		"chestplateDurability": 240,
+		"chestplateDefense": 5,
+		"bootsDurability": 180,
+		"bootsDefense": 2
+	},
+	"vendelGreaves": {
+		"enabled": true,
+		"toughness": 0.0,
+		"leggingsDurability": 180,
+		"leggingsDefense": 2
+	},
+	"bandenhelm": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"bentyGrangeHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"birkaHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 240,
+		"helmetDefense": 2
+	},
+	"broaHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"coppergateHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"desjatinnaHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"gildedDesjatinnaHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"gildedTjeleHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"gjermundbuHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"gorzuchyHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 240,
+		"helmetDefense": 2
+	},
+	"lokrumeHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"pecsHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 240,
+		"helmetDefense": 2
+	},
+	"sommeHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"stafforshireHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"suttonHooHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"leidenBandhelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"teljeHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"ultunaHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"valsgarde5": {
+		"enabled": true,
+		"toughness": 0.5,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"valsgarde8": {
+		"enabled": true,
+		"toughness": 0.4000000059604645,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"vendel1": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"vendelHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"verdenHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"wollastonHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"yarmHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"stromovkaHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"zlinHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"kerchHelmet": {
+		"enabled": true,
+		"toughness": 0.30000001192092896,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"trosinoHelmet": {
+		"enabled": true,
+		"toughness": 0.4000000059604645,
+		"helmetDurability": 180,
+		"helmetDefense": 2
+	},
+	"patternedEasternHat": {
+		"enabled": true,
+		"toughness": 0.0,
+		"helmetDurability": 100,
+		"helmetDefense": 1
+	},
+	"easternHat": {
+		"enabled": true,
+		"toughness": 0.0,
+		"helmetDurability": 100,
+		"helmetDefense": 1
+	},
+	"pillboxCap": {
+		"enabled": true,
+		"toughness": 0.0,
+		"helmetDurability": 100,
+		"helmetDefense": 1
+	},
+	"oaternedPillboxCap": {
+		"enabled": true,
+		"toughness": 0.0,
+		"helmetDurability": 100,
+		"helmetDefense": 1
+	},
+	"furPillboxCap": {
+		"enabled": true,
+		"toughness": 0.0,
+		"helmetDurability": 100,
+		"helmetDefense": 1
+	},
+	"winingas": {
+		"enabled": true,
+		"toughness": 0.0,
+		"leggingsDurability": 100,
+		"leggingsDefense": 1
+	}
+}

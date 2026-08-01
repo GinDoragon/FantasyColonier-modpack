@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "style": "vanilla",
+  "swellHeight": 0.7,
+  "sheetOpacity": 1.0,
+  "surfStrength": 1.0,
+  "foamIntensity": 0.92,
+  "fresnelStrength": 1.0,
+  "sunGlint": 1.0,
+  "radius": 512,
+  "quality": 3
+}

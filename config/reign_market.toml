@@ -1,0 +1,107 @@
+
+[Logs]
+	#price coefficient for logs [0.5 - 2.0]
+	logs_multiplier = 1.0
+	oak_log = 4.0
+	spruce_log = 4.0
+	birch_log = 4.0
+	acacia_log = 4.0
+	dark_oak_log = 4.0
+	jungle_log = 4.0
+	mangrove_log = 4.0
+	cherry_log = 4.0
+
+[Fuel]
+	#price coefficient for coal [0.5 - 2.0]
+	fuel_multiplier = 1.0
+	coal = 4.0
+	charcoal = 4.0
+
+[Ores]
+	#price coefficient for ores [0.5 - 2.0]
+	ores_multiplier = 1.0
+	raw_copper = 4.0
+	raw_iron = 4.0
+	raw_gold = 4.0
+	diamond = 32.0
+	lapis_lazuli = 4.0
+	redstone_dust = 4.0
+	emerald = 48.0
+	netherite_scrap = 240.0
+
+[Ingots]
+	#price coefficient for ingots [0.5 - 2.0]
+	ingots_multiplier = 1.0
+	copper_ingot = 4.0
+	iron_ingot = 6.0
+	gold_ingot = 6.0
+	netherite_ingot = 1024.0
+
+[Tools]
+	#price coefficient for tools [0.5 - 2.0]
+	tools_multiplier = 1.0
+	iron_sword = 10.0
+	iron_pickaxe = 14.0
+	iron_axe = 14.0
+	iron_shovel = 6.0
+	iron_helmet = 24.0
+	iron_chestplate = 40.0
+	iron_leggings = 32.0
+	iron_boots = 20.0
+	diamond_sword = 72.0
+	diamond_pickaxe = 104.0
+	diamond_axe = 104.0
+	diamond_shovel = 40.0
+	diamond_helmet = 172.0
+	diamond_chestplate = 300.0
+	diamond_leggings = 236.0
+	diamond_boots = 140.0
+	shield = 10.0
+	shears = 10.0
+	bow = 16.0
+
+[Food]
+	#price coefficient for foods [0.5 - 2.0]
+	food_multiplier = 1.0
+	bread = 4.0
+	baked_potato = 4.0
+	pumpkin_pie = 4.0
+	carrot = 4.0
+	cooked_beef = 4.0
+	cooked_porkchop = 4.0
+	cooked_chicken = 4.0
+	cooked_cod = 4.0
+	hay_block = 10.0
+	honey_bottle = 8.0
+
+[Blocks]
+	#price coefficient for blocks [0.5 - 2.0]
+	blocks_multiplier = 1.0
+	cobblestone = 4.0
+	sand = 4.0
+	wool = 4.0
+	clay = 4.0
+
+[Other]
+	glass_bottle = 4.0
+	arrow = 4.0
+	experience_bottle = 6.0
+	gunpowder = 6.0
+	bone = 4.0
+	string = 4.0
+	slime_ball = 4.0
+	paper = 4.0
+	feather = 4.0
+	glowstone_dust = 4.0
+	ender_pearl = 20.0
+	leather = 4.0
+	blaze_rod = 16.0
+	#price coefficient for other [0.5 - 2.0]
+	other_multiplier = 0.0
+
+["Base amount"]
+	#The base number of instruments on the market
+	tools_base_amount = 8.0
+	#The base number of goods on the market
+	goods_base_amount = 640.0
+

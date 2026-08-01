@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "playerPrints": true,
+  "mobPrints": true,
+  "quietSneaking": true,
+  "lifetime": 45,
+  "maxPrints": 600,
+  "opacity": 70,
+  "stepPuffs": true,
+  "respectVanillaParticleSetting": true
+}

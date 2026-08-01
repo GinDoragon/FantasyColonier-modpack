@@ -1,0 +1,8 @@
+
+["Extended Datapacks - Client"]
+	#Determines whether you want to see the passive particles of weapons
+	seePassiveWeaponsParticle = true
+	#Square of the distance between two viewing entities in which particles can be generated
+	#Range: 4900 ~ 10000
+	particleViewer = 9025
+

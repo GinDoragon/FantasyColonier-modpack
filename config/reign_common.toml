@@ -1,0 +1,39 @@
+
+[World]
+	disable_vanilla_villagers = true
+	disable_market_tax = false
+	disable_house_feeding = false
+	disable_daily_payouts = false
+	disable_capital_feeding = false
+	#Frequency of feeding Houses and capital, in hours. (Default: 1)
+	hourly_meal_period = 1.0
+	house_consume_multiplier = 1.0
+	disable_license_lvl_loss = false
+	#Should players with adventure mode be informed that they can buy an entry ticket? (For ReignCraft)
+	enabled_adventure_player_welcome = false
+	ender_pearl_private_disabled = true
+	tnt_private_disabled = true
+	#Allows players to set a personal surname postfix with /surname
+	enable_player_surname = true
+	#Disables all item damage and breaking penalties from smith crafting. Crafted item tags are still applied.
+	disable_smith_craft_breaking = false
+	#Allows lords to change an already selected House tradition through the incubator if the House satisfies the target tradition structure limits.
+	allow_house_tradition_reselection = false
+	#Disables hourly domain treasury payments. Domain private protection and suspicion are treated as active for free, without requiring a treasury safe or coins.
+	disable_domain_treasury_consumption = false
+
+["Religion SQL Sync"]
+	#Synchronizes religion follower counts between servers through a shared MySQL/MariaDB database.
+	religion_sql_sync_enabled = false
+	#Unique id of this Minecraft server in the shared religion database. Example: survival_1
+	religion_sql_server_id = "server_1"
+	#Display name of this server/kingdom in religion reports. Cyrillic names are allowed.
+	religion_sql_server_name = "server_1"
+	#JDBC URL for MySQL/MariaDB. Example: jdbc:mysql://127.0.0.1:3306/reign?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+	religion_sql_jdbc_url = ""
+	religion_sql_username = ""
+	religion_sql_password = ""
+	#Rows older than this many hours are ignored when calculating the global religion pool.
+	#Range: 1 ~ 168
+	religion_sql_stale_hours = 6
+
